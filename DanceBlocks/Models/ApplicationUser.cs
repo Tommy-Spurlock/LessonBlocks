@@ -12,6 +12,8 @@ namespace DanceBlocks.Models
 
         public ApplicationUser() { }
 
+        // Add profile data for application users by adding properties to the ApplicationUser class
+
         [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
@@ -21,8 +23,12 @@ namespace DanceBlocks.Models
         public string LastName { get; set; }
 
 
+        // Set up PK -> FK relationships to other objects
+        public List<Student> Students { get; set; }
 
-
-
+    
     }
+
+
 }
+

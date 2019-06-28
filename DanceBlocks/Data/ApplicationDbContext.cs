@@ -15,5 +15,24 @@ namespace DanceBlocks.Data
         }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<DanceType> DanceTypes { get; set; }
+
+        public DbSet<Lesson> Lessons { get; set; }
+
+        public DbSet<SkillLevel> SkillLevels { get; set; }
+
+        public DbSet<Step> Steps { get; set; }
+
+        public DbSet<Student> Students { get; set; }
+
+        public DbSet<LessonStep> LessonSteps { get; set; }
+
+        public DbSet<DanceCategory> DanceCategories { get; set; }
+
+
+
+
     }
 }

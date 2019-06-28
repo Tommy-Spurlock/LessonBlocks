@@ -4,14 +4,16 @@ using DanceBlocks.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DanceBlocks.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190628155505_Complete-Models-Mk1")]
+    partial class CompleteModelsMk1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -175,7 +177,8 @@ namespace DanceBlocks.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DanceTypeId");
+                    b.HasIndex("DanceTypeId")
+                        .IsUnique();
 
                     b.HasIndex("SkillLevelId");
 
@@ -385,7 +388,7 @@ namespace DanceBlocks.Data.Migrations
                     b.HasOne("DanceBlocks.Models.Student", "Student")
                         .WithMany("Lessons")
                         .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("DanceBlocks.Models.LessonStep", b =>
@@ -393,12 +396,12 @@ namespace DanceBlocks.Data.Migrations
                     b.HasOne("DanceBlocks.Models.Lesson", "Lesson")
                         .WithMany("LessonSteps")
                         .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("DanceBlocks.Models.Step", "Step")
                         .WithMany("LessonSteps")
                         .HasForeignKey("StepId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("DanceBlocks.Models.Step", b =>
@@ -406,19 +409,19 @@ namespace DanceBlocks.Data.Migrations
                     b.HasOne("DanceBlocks.Models.DanceType", "DanceType")
                         .WithMany()
                         .HasForeignKey("DanceTypeId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("DanceBlocks.Models.SkillLevel", "SkillLevel")
                         .WithMany("Steps")
                         .HasForeignKey("SkillLevelId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("DanceBlocks.Models.Student", b =>
                 {
                     b.HasOne("DanceBlocks.Models.DanceType", "DanceType")
-                        .WithMany()
-                        .HasForeignKey("DanceTypeId")
+                        .WithOne("Student")
+                        .HasForeignKey("DanceBlocks.Models.Student", "DanceTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DanceBlocks.Models.SkillLevel", "SkillLevel")
