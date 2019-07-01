@@ -4,14 +4,16 @@ using DanceBlocks.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DanceBlocks.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190701152411_Added-seed-data-for-db-first-run")]
+    partial class Addedseeddatafordbfirstrun
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,28 +173,28 @@ namespace DanceBlocks.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(2019, 7, 1, 14, 52, 26, 242, DateTimeKind.Local).AddTicks(7846),
+                            Date = new DateTime(2019, 7, 1, 11, 24, 11, 25, DateTimeKind.Local).AddTicks(3373),
                             Name = "Intro",
                             StudentId = 1
                         },
                         new
                         {
                             Id = 2,
-                            Date = new DateTime(2019, 7, 1, 14, 52, 26, 242, DateTimeKind.Local).AddTicks(8673),
+                            Date = new DateTime(2019, 7, 1, 11, 24, 11, 25, DateTimeKind.Local).AddTicks(4203),
                             Name = "Intermediate",
                             StudentId = 2
                         },
                         new
                         {
                             Id = 3,
-                            Date = new DateTime(2019, 7, 1, 14, 52, 26, 242, DateTimeKind.Local).AddTicks(8688),
+                            Date = new DateTime(2019, 7, 1, 11, 24, 11, 25, DateTimeKind.Local).AddTicks(4215),
                             Name = "Advanced",
                             StudentId = 4
                         },
                         new
                         {
                             Id = 4,
-                            Date = new DateTime(2019, 7, 1, 14, 52, 26, 242, DateTimeKind.Local).AddTicks(8688),
+                            Date = new DateTime(2019, 7, 1, 11, 24, 11, 25, DateTimeKind.Local).AddTicks(4219),
                             Name = "Lesson 6",
                             StudentId = 3
                         });
@@ -542,7 +544,9 @@ namespace DanceBlocks.Data.Migrations
 
                     b.Property<DateTime>("StudentStartDate");
 
-                    b.Property<string>("UserId");
+                    b.Property<int>("UserId");
+
+                    b.Property<string>("UserId1");
 
                     b.HasKey("Id");
 
@@ -550,7 +554,7 @@ namespace DanceBlocks.Data.Migrations
 
                     b.HasIndex("SkillLevelId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Students");
 
@@ -566,8 +570,8 @@ namespace DanceBlocks.Data.Migrations
                             LastName = "Bird",
                             PhoneNumber = "111-111-1111",
                             SkillLevelId = 1,
-                            StudentStartDate = new DateTime(2019, 7, 1, 14, 52, 26, 240, DateTimeKind.Local).AddTicks(1800),
-                            UserId = "00000000-ffff-ffff-ffff-ffffffffffff"
+                            StudentStartDate = new DateTime(2019, 7, 1, 11, 24, 11, 22, DateTimeKind.Local).AddTicks(8762),
+                            UserId = 1
                         },
                         new
                         {
@@ -580,8 +584,8 @@ namespace DanceBlocks.Data.Migrations
                             LastName = "Gump",
                             PhoneNumber = "111-111-1112",
                             SkillLevelId = 2,
-                            StudentStartDate = new DateTime(2019, 7, 1, 14, 52, 26, 242, DateTimeKind.Local).AddTicks(2802),
-                            UserId = "00000000-ffff-ffff-ffff-ffffffffffff"
+                            StudentStartDate = new DateTime(2019, 7, 1, 11, 24, 11, 24, DateTimeKind.Local).AddTicks(8770),
+                            UserId = 1
                         },
                         new
                         {
@@ -594,8 +598,8 @@ namespace DanceBlocks.Data.Migrations
                             LastName = "McGwier",
                             PhoneNumber = "111-111-7111",
                             SkillLevelId = 2,
-                            StudentStartDate = new DateTime(2019, 7, 1, 14, 52, 26, 242, DateTimeKind.Local).AddTicks(2843),
-                            UserId = "00000000-ffff-ffff-ffff-ffffffffffff"
+                            StudentStartDate = new DateTime(2019, 7, 1, 11, 24, 11, 24, DateTimeKind.Local).AddTicks(8789),
+                            UserId = 1
                         },
                         new
                         {
@@ -608,8 +612,8 @@ namespace DanceBlocks.Data.Migrations
                             LastName = "Knope",
                             PhoneNumber = "111-111-1122",
                             SkillLevelId = 3,
-                            StudentStartDate = new DateTime(2019, 7, 1, 14, 52, 26, 242, DateTimeKind.Local).AddTicks(2851),
-                            UserId = "00000000-ffff-ffff-ffff-ffffffffffff"
+                            StudentStartDate = new DateTime(2019, 7, 1, 11, 24, 11, 24, DateTimeKind.Local).AddTicks(8793),
+                            UserId = 1
                         });
                 });
 
@@ -800,13 +804,13 @@ namespace DanceBlocks.Data.Migrations
                         {
                             Id = "00000000-ffff-ffff-ffff-ffffffffffff",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c984aa14-c5a5-4cee-9279-3a4dc3b96aea",
+                            ConcurrencyStamp = "4a00975b-f609-4a86-8fa6-e956daaaaf2e",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEJ9Etf8azyyanThpUurWGNjQ0bJETcCLPpCnOjJbZtDKLDKQBQ0GOqYXgidHPBlSw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHU+Ogj+xILZCFt4I8gQN9/iGNG+UoaUPEFH7jXd+OmdZQX5LuK+wsTBjMOSG0GiDQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577",
                             TwoFactorEnabled = false,
@@ -877,7 +881,7 @@ namespace DanceBlocks.Data.Migrations
 
                     b.HasOne("DanceBlocks.Models.ApplicationUser", "User")
                         .WithMany("Students")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

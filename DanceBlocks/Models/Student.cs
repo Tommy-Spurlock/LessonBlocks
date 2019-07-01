@@ -11,7 +11,7 @@ namespace DanceBlocks.Models
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "First Name")]
+        [Display(Name = "Name")]
         public string FirstName { get; set; }
 
         [Required]
@@ -35,7 +35,7 @@ namespace DanceBlocks.Models
 
         public int SkillLevelId { get; set; }
 
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         public List<Lesson> Lessons { get; set; }
 
