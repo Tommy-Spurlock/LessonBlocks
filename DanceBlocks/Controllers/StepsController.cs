@@ -51,7 +51,7 @@ namespace DanceBlocks.Controllers
 
         // GET: Steps/Create
         public IActionResult Create()
-        {
+        { 
             ViewData["DanceTypeId"] = new SelectList(_context.DanceTypes, "Id", "Name");
             ViewData["SkillLevelId"] = new SelectList(_context.SkillLevels, "Id", "Id");
             return View();

@@ -9,6 +9,7 @@ using DanceBlocks.Data;
 using DanceBlocks.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using DanceBlocks.Models.StudentViewModels;
 
 namespace DanceBlocks.Controllers
 {
@@ -62,9 +63,17 @@ namespace DanceBlocks.Controllers
         // GET: Students/Create
         public IActionResult Create()
         {
-            ViewData["DanceTypeId"] = new SelectList(_context.DanceTypes, "Id", "Name");
-            ViewData["SkillLevelId"] = new SelectList(_context.SkillLevels, "Id", "Id");
-            return View();
+
+            CreateStudentViewModel newStudent = new CreateStudentViewModel()
+            {
+               
+                DanceTypes = new SelectList(_context.DanceTypes, "Id", "Name"),
+                SkillLevels = new SelectList(_context.SkillLevels, "Id", "Level")
+                
+            };
+             
+          
+            return View(newStudent);
         }
 
         // POST: Students/Create
@@ -72,17 +81,26 @@ namespace DanceBlocks.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,PhoneNumber,Email,Address,StudentStartDate,IsActive,DanceTypeId,SkillLevelId,UserId")] Student student)
+        public async Task<IActionResult> Create(CreateStudentViewModel newStudent)
         {
+
+            ApplicationUser user = await GetCurrentUserAsync();
+
+            newStudent.Student.IsActive = true;
+            newStudent.Student.UserId = user.Id;
+            newStudent.Student.StudentStartDate = DateTime.Now;
+            newStudent.DanceTypes = new SelectList(_context.DanceTypes, "Id", "Name");
+            newStudent.SkillLevels = new SelectList(_context.SkillLevels, "Id", "Level");
+
             if (ModelState.IsValid)
             {
-                _context.Add(student);
+                _context.Add(newStudent.Student);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DanceTypeId"] = new SelectList(_context.DanceTypes, "Id", "Name", student.DanceTypeId);
-            ViewData["SkillLevelId"] = new SelectList(_context.SkillLevels, "Id", "Id", student.SkillLevelId);
-            return View(student);
+
+
+            return View(newStudent);
         }
 
         // GET: Students/Edit/5
